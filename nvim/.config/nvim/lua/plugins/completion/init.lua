@@ -49,7 +49,6 @@ return {
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping({
 						i = vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true),
 						c = function(fallback)
@@ -167,12 +166,25 @@ return {
 		config = function(_, opts)
 			require("luasnip").setup(opts)
 
+      require("luasnip").config.set_config({
+        enable_autosnippets = true,
+        store_selection_keys = "<C-e>",
+        updateevents = "TextChanged,TextChangedI",
+      })
+
 			local snippets_folder = vim.fn.stdpath("config") .. "/lua/plugins/completion/snippets/"
 			require("luasnip.loaders.from_lua").lazy_load({ paths = snippets_folder })
 
 			vim.api.nvim_create_user_command("LuaSnipEdit", function()
 				require("luasnip.loaders.from_lua").edit_snippet_files()
 			end, {})
+
+      vim.keymap.set(
+        "n",
+        "<Leader>L",
+        "<cmd>lua require('luasnip.loaders.from_lua').load({paths = '~/.config/nvim/lua/plugins/completion/snippets/'})<CR>",
+        { silent = true, noremap = true, desc = "Reload LuaSnip" }
+      )
 		end,
 	},
 }
