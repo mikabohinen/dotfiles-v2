@@ -12,11 +12,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FocusGained", { command = "checktime" })
 
 -- Enable spell checking for md, txt, and tex files
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+-- vim.cmd([[autocmd FileType markdown,text,tex setlocal spell]])
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "text", "tex" },
 	callback = function()
-		if vim.bo.filetype == "markdown" or vim.bo.filetype == "text" or vim.bo.filetype == "tex" then
-			vim.bo.spell = true
-		end
+		print("spell")
+		vim.wo.spell = true
 	end,
 })
 

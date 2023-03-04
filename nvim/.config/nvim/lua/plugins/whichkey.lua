@@ -29,6 +29,7 @@ return {
           q = { function() require("utils").quit() end, "Quit", },
           t = { "<cmd>tabclose<cr>", "Close Tab" },
         },
+				r = { name = "+Repl" },
 				w = { name = "+Window" },
 				b = { name = "+Buffer" },
 				d = { name = "+Debug" },
@@ -67,6 +68,12 @@ return {
 					},
 				},
 			}, { prefix = "<leader>", mode = { "n", "v" } })
+
+			wk.register({
+				l = {
+					name = "+VimTex",
+				},
+			}, { prefix = "<localleader>", mode = { "n", "v" } })
 		end,
 	},
 }
