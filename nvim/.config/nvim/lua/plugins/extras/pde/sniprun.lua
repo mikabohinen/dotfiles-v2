@@ -1,17 +1,18 @@
 return {
-  {
-    "michaelb/sniprun",
-    enabled = false,
-    build = "bash ./install.sh",
-    opts = {
-      display = { "Terminal" },
-      live_display = { "VirtualTextOk", "TerminalOk" },
-      selected_interpreters = { "Python3_fifo" },
-      repl_enable = { "Python3_fifo" },
-    },
-    config = function(_, opts)
-      require("sniprun").setup(opts)
-    end,
+	{
+		"michaelb/sniprun",
+		-- enabled = false,
+		build = "bash ./install.sh",
+		ft = { "python" },
+		opts = {
+			display = { "Terminal" },
+			live_display = { "VirtualTextOk", "TerminalOk" },
+			selected_interpreters = { "Python3_fifo" },
+			repl_enable = { "Python3_fifo" },
+		},
+		config = function(_, opts)
+			require("sniprun").setup(opts)
+		end,
     --stylua: ignore
     keys = {
       { "<leader>rA", function() require("sniprun.api").run_range(1, vim.fn.line("$")) end, desc = "All", },
@@ -23,5 +24,5 @@ return {
       { "<leader>rr", function() require("sniprun").reset() end, desc = "Reset", },
       { "<leader>rs", function() require("sniprun").run("v") end, mode = {"v"}, desc = "Selection", },
     },
-  },
+	},
 }
