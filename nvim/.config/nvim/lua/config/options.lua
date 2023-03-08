@@ -1,12 +1,12 @@
 local opt = vim.opt
 
 opt.formatoptions = "jcroqlnt" -- tcqj
-opt.shortmess:append { W = true, I = true, c = true }
+opt.shortmess:append({ W = true, I = true, c = true })
 opt.breakindent = true
 opt.clipboard = "unnamedplus" -- Access system clipboard
 opt.cmdheight = 1
 opt.completeopt = "menuone,noselect,noinsert"
-opt.conceallevel = 0
+opt.conceallevel = 2
 opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true
@@ -45,13 +45,16 @@ opt.title = true
 opt.undofile = true
 opt.updatetime = 200
 opt.wildmode = "longest:full,full"
+vim.cmd("set tags+=./tags;,tags")
 
-if vim.fn.has "nvim-0.9.0" == 1 then
-  opt.splitkeep = "screen"
-  opt.shortmess:append { C = true }
+if vim.fn.has("nvim-0.9.0") == 1 then
+	opt.splitkeep = "screen"
+	opt.shortmess:append({ C = true })
 end
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+
+vim.g.zettelkasten = "/home/mika/notes/zettelkasten/"
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })

@@ -16,7 +16,6 @@ vim.api.nvim_create_autocmd("FocusGained", { command = "checktime" })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "markdown", "text", "tex" },
 	callback = function()
-		print("spell")
 		vim.wo.spell = true
 	end,
 })

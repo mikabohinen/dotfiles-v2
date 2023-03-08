@@ -19,9 +19,9 @@ keymap("n", "<leader>wm", "<C-w>|<C-w>_", { silent = true, noremap = true, desc 
 -- Equalize window sizes
 keymap("n", "<leader>we", "<C-w>=", { silent = true, noremap = true, desc = "Equalize window sizes" })
 
--- Switching between buffers
-keymap("n", "H", ":bp<CR>", { silent = true })
-keymap("n", "L", ":bn<CR>", { silent = true })
+-- Switching between buffers (unneccesary since ctrl-^ already does this)
+-- keymap("n", "H", ":bp<CR>", { silent = true })
+-- keymap("n", "L", ":bn<CR>", { silent = true })
 
 -- Remap for dealing with word wrap
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
@@ -68,3 +68,12 @@ keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
 -- Insert blank line
 keymap("n", "]<Space>", "o<Esc>", default_opts)
 keymap("n", "[<Space>", "O<Esc>", default_opts)
+
+-- Note related mappings
+keymap("n", "<leader>ni", ":e $NOTES_DIR/index.md<cr>:cd $NOTES_DIR<cr>", { silent = true, desc = "Index" })
+keymap("n", "<leader>nt", "<cmd>!ctags -R .<cr><cr>", { silent = true, desc = "Generate ctags" })
+
+vim.cmd([[
+command! -nargs=1 NewZettel :execute ":e" zettelkasten . strftime("%Y%m%d%H%M") . "-<args>.md"
+]])
+keymap("n", "<leader>nz", ":NewZettel ", { silent = true, desc = "New zettel" })
